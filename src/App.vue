@@ -68,6 +68,12 @@ function deleteRecord(id) {
   )
 
   saveRecords()
+
+  successMessage.value = 'Registration deleted successfully!'
+
+  setTimeout(() => {
+    successMessage.value = ''
+  }, 3000)
 }
 
 function editRecord(record) {
