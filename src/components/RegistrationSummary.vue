@@ -28,8 +28,9 @@ const cancelledCount = computed(() =>
 
     <!-- Total Registrations -->
     <div
-      class="bg-white rounded-lg shadow-lg p-5 border border-slate-200 border-l-4 border-l-slate-800"
-    >
+  class="bg-white rounded-lg shadow-lg p-5 border border-slate-200 border-l-4 border-l-slate-800"
+  aria-label="Total registrations"
+>
       <p class="text-sm font-medium text-slate-500 uppercase">
         Total Registrations
       </p>
