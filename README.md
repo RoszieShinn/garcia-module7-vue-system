@@ -62,6 +62,9 @@ Open the localhost URL provided by Vite in the browser, for example:
 ```text
 http://localhost:5173
 ```
+## Build Verification
+
+The project includes a GitHub Actions workflow that automatically checks the Vue application whenever changes are pushed to the `main` branch. The workflow installs the project dependencies using `npm ci` and verifies that the application builds successfully using `npm run build`. A successful build is displayed with a green check mark in the GitHub Actions tab.
 
 ## localStorage Implementation
 
