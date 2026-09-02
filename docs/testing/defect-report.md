@@ -49,7 +49,10 @@ Medium
 
 ## Status
 
-Open
+Fixed
+
+Fix Commit: 0b9844e — fix: correct registration input validation
+Retesting Result: Passed
 
 ## Planned Correction
 
