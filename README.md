@@ -121,3 +121,66 @@ Instead of connecting to the backend and MongoDB at this stage, Module 7 uses **
 
 The current system uses browser localStorage for data storage, so registration records are limited to the current browser environment and are not yet connected to the Node.js, Express, and MongoDB Atlas backend planned in Module 6. The system also does not currently include user authentication, authorization, advanced reporting, or deployment to a production environment. In the future, the system can be improved by connecting the Vue.js frontend to the Node.js and Express backend and MongoDB Atlas database, adding authentication and administrator features, providing registration reports and data export, and deploying the application for actual use.
 
+## Software Testing — Module 8
+
+### Testing Summary
+
+The Event Management System was tested as part of Module 8 - Software Testing. Testing focused on five major features: adding registration records, displaying registration records, editing registration records, deleting registration records, and search/validation.
+
+### Test Commands
+
+The following commands were used to verify the application:
+
+```bash
+npm run test:run
+npm run build
+```
+
+The project also uses GitHub Actions to automatically run:
+
+```bash
+npm ci
+npm run test:run
+npm run build
+```
+
+### Automated Test Result Summary
+
+Five automated unit tests were created using Vitest and Vue Test Utils.
+
+* Add valid registration — Passed
+* Display registration records — Passed
+* Edit registration record — Passed
+* Delete registration record — Passed
+* Search registration records — Passed
+
+**Final Result: 5/5 automated tests passed.**
+
+### Manual Testing
+
+Ten manual test cases were prepared and executed, consisting of positive and negative/edge cases for the five major features.
+
+All manual test cases were executed and documented with expected results, actual results, status, and screenshot evidence.
+
+### Defect Status
+
+One actual software defect was identified during testing. The Event Name and Attendee Name fields accepted numeric-only and special-character-only input.
+
+The defect was corrected by adding validation requiring the Event Name and Attendee Name to contain at least one letter.
+
+**Defect ID:** DEF-01
+**Status:** Fixed
+**Fix Commit:** `0b9844e` — `fix: correct registration input validation`
+**Retesting Result:** Passed
+
+### Continuous Integration
+
+GitHub Actions was updated to automatically install dependencies, run the automated tests, and build the Vue application whenever changes are pushed to the `main` branch.
+
+The CI workflow runs:
+
+* `npm ci`
+* `npm run test:run`
+* `npm run build`
+
+A screenshot of the successful CI result is included in the Module 8 documentation.
