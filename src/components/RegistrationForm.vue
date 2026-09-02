@@ -47,6 +47,16 @@ function submitForm() {
     return
   }
 
+  // Check if Event Name and Attendee Name contain at least one letter
+  if (
+    !/[A-Za-z]/.test(eventName.value) ||
+    !/[A-Za-z]/.test(attendeeName.value)
+  ) {
+    window.alert(
+      'Event Name and Attendee Name must contain at least one letter.'
+    )
+    return
+  }
   const data = {
     eventName: eventName.value.trim(),
     attendeeName: attendeeName.value.trim(),
