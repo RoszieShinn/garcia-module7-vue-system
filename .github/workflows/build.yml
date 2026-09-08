@@ -1,10 +1,12 @@
-name: Vue Build Check
-
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - module9/software-evolution
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - module9/software-evolution
 
 jobs:
   build:
