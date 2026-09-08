@@ -1,11 +1,33 @@
 <script setup>
-defineProps({
+import { ref, computed } from 'vue'
+
+const props = defineProps({
   records: {
     type: Array,
     default: () => []
   }
 })
+
 const emit = defineEmits(['search', 'delete', 'edit'])
+
+const selectedStatus = ref('All')
+const filteredRecords = computed(() => {
+  if (selectedStatus.value === 'All') {
+    return props.records
+  }
+
+ return props.records.filter(record => {
+  if (selectedStatus.value === 'Active') {
+    return record.status === 'Registered' || record.status === 'Confirmed'
+  }
+
+  if (selectedStatus.value === 'Inactive') {
+    return record.status === 'Cancelled'
+  }
+
+  return true
+})
+})
 </script>
 <template>
   <section class="bg-white rounded-lg shadow-lg border border-slate-200 p-6 mt-6">
@@ -28,12 +50,20 @@ const emit = defineEmits(['search', 'delete', 'edit'])
       class="border border-slate-300 rounded-full px-4 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-slate-300"
       @input="emit('search', $event.target.value)"
     />
-
+    <!-- Status Filter -->
+<select
+  v-model="selectedStatus"
+  class="border border-slate-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+>
+  <option value="All">All</option>
+  <option value="Active">Active</option>
+  <option value="Inactive">Inactive</option>
+</select>
     <!-- Total -->
     <span
       class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold whitespace-nowrap shadow-sm"
     >
-      {{ records.length }} Total
+      {{ filteredRecords.length }} Total
     </span>
   </div>
 </div>
@@ -62,7 +92,7 @@ const emit = defineEmits(['search', 'delete', 'edit'])
 
         <tbody>
   <tr
-    v-for="record in records"
+    v-for="record in filteredRecords"
     :key="record.id"
     class="border-b border-slate-100"
   >
@@ -99,7 +129,7 @@ const emit = defineEmits(['search', 'delete', 'edit'])
     </td>
   </tr>
 
-  <tr v-if="records.length === 0">
+ <tr v-if="filteredRecords.length === 0">
     <td colspan="5" class="px-3 py-6 text-center text-slate-500">
       No registrations yet.
     </td>
