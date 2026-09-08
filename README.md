@@ -184,3 +184,76 @@ The CI workflow runs:
 * `npm run build`
 
 A screenshot of the successful CI result is included in the Module 8 documentation.
+
+## Module 9 - Software Evolution
+
+### Change Request
+
+**Change Request ID:** CR-M9-01 — Active/Inactive Record Filter
+
+**Maintenance Type:** Perfective Maintenance
+
+**Target Version:** Version 1.1.0
+
+**Affected Architecture:** Vue.js Frontend, particularly the RegistrationList component and user interface.
+
+### Implementation Summary
+
+The approved software evolution change adds an **Active/Inactive Record Filter** to the Registration Management system. The filter provides three options:
+
+* **All** — displays all registration records
+* **Active** — displays records with Registered or Confirmed status
+* **Inactive** — displays records with Cancelled status
+
+The implementation was added to `RegistrationList.vue` while preserving the existing CRUD operations, search, validation, delete confirmation, localStorage persistence, and responsive interface.
+
+The existing localStorage record structure was not changed, so existing registration records remain compatible with the updated system.
+
+### Test Results
+
+The automated Vitest test suite was updated for the evolved version.
+
+* Original Module 8 regression tests retained: **5**
+* New Module 9 status filter tests: **2**
+* **Final automated test result: 7/7 tests passed**
+
+The new tests verify that the Active and Inactive filters display only the appropriate registration records.
+
+### Build Result
+
+The production build was verified successfully using:
+
+```bash
+npm run build
+```
+
+**Build Status: Passed**
+
+### Continuous Integration Status
+
+The evolved branch was verified using GitHub Actions.
+
+* **Workflow:** Vue Build Check
+* **Run:** #7
+* **Branch:** `module9/software-evolution`
+* **Commit:** `9f9f915`
+* **Run Date:** September 8, 2026
+* **Status:** Completed successfully
+
+The CI workflow successfully completed the automated test and production build checks.
+
+### Known Limitations
+
+The system continues to use browser localStorage for data persistence. It is not yet connected to the Node.js and Express backend and MongoDB Atlas database proposed in Module 6.
+
+The Active/Inactive Filter is based on the existing registration status values. **Registered** and **Confirmed** are treated as Active, while **Cancelled** is treated as Inactive.
+
+Other limitations from the previous version, such as the absence of authentication, authorization, advanced reporting, and production deployment, remain unchanged.
+
+### Repository Verification
+
+The latest Module 9 code is available in the public GitHub repository:
+
+https://github.com/RoszieShinn/garcia-module7-vue-system
+
+The `module9/software-evolution` branch contains the latest implemented change, automated tests, and CI workflow update.
