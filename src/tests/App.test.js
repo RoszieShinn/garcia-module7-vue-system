@@ -139,3 +139,64 @@ describe('Registration List - Search', () => {
     expect(wrapper.emitted('search')[0][0]).toBe('Juan Dela Cruz')
   })
 })
+describe('Registration List - Status Filter', () => {
+  it('shows only Active records when Active filter is selected', async () => {
+    const records = [
+      {
+        id: 1,
+        eventName: 'Computer Science Seminar',
+        attendeeName: 'Juan Dela Cruz',
+        attendeeEmail: 'juan.delacruz@example.com',
+        status: 'Registered'
+      },
+      {
+        id: 2,
+        eventName: 'Technology Workshop',
+        attendeeName: 'Maria Santos',
+        attendeeEmail: 'maria.santos@example.com',
+        status: 'Cancelled'
+      }
+    ]
+
+    const wrapper = mount(RegistrationList, {
+      props: {
+        records
+      }
+    })
+
+    await wrapper.find('select').setValue('Active')
+
+    expect(wrapper.text()).toContain('Computer Science Seminar')
+    expect(wrapper.text()).not.toContain('Technology Workshop')
+  })
+
+  it('shows only Inactive records when Inactive filter is selected', async () => {
+    const records = [
+      {
+        id: 1,
+        eventName: 'Computer Science Seminar',
+        attendeeName: 'Juan Dela Cruz',
+        attendeeEmail: 'juan.delacruz@example.com',
+        status: 'Registered'
+      },
+      {
+        id: 2,
+        eventName: 'Technology Workshop',
+        attendeeName: 'Maria Santos',
+        attendeeEmail: 'maria.santos@example.com',
+        status: 'Cancelled'
+      }
+    ]
+
+    const wrapper = mount(RegistrationList, {
+      props: {
+        records
+      }
+    })
+
+    await wrapper.find('select').setValue('Inactive')
+
+    expect(wrapper.text()).toContain('Technology Workshop')
+    expect(wrapper.text()).not.toContain('Computer Science Seminar')
+  })
+})

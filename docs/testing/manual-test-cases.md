@@ -344,28 +344,28 @@ The registration records remained available after refreshing the page. The syste
  
 * **Evidence Filename:** `TC-10-localstorage-refresh.png`
 
-## TC-11 — Check Responsive Layout
+### TC-11 Check Responsive Layout
 
-* **Requirement/Feature:** Responsive User Interface
-* **Objective:** Verify that the registration form and registration list remain usable and properly arranged on different screen sizes.
+**Requirement:** Responsive User Interface and CR-M9-01
 
-* **Preconditions:** The application is running and at least one registration is displayed.
-* **Test Data:** Existing registration record.
+**Test Data:** Registration records with different statuses.
 
-* **Test Steps:**
-  1. Open the application in a desktop-sized browser window.
-  2. Check the registration form, buttons, and registration list.
-  3. Resize the browser window to a smaller screen size.
-  4. Check the form, buttons, fields, and registration list again.
+**Steps:**
 
-* **Expected Result:** The application remains readable and usable on different screen sizes. Form fields, buttons, and registration records do not overlap or become unusable.
+1. Open the Registration Management page on a desktop-sized browser.
+2. Verify that the Active/Inactive Filter is visible and usable.
+3. Select **All**, **Active**, and **Inactive**.
+4. Resize the browser to a mobile-width screen.
+5. Verify that the filter remains visible and usable.
+6. Select **All**, **Active**, and **Inactive** again.
 
-**Actual Result:**  
-The system displayed the Event Management System correctly on a smaller screen. The layout adjusted to the screen size, and the registration form and dashboard remained visible and usable without overlapping.
-**Status:** Pass  
-**Date:** September 2, 2026
+**Expected Result:**
+The Registration Management interface remains usable on both desktop and mobile-width screens. The Active/Inactive Filter is accessible and does not cause layout overlap or break the existing responsive design.
 
-* **Evidence Filename:** `TC-11-responsive-layout.png`
+**Actual Result:** Not Run
+
+**Status:** Not Run
+
 
 ## TC-12 — Check Record Count or Feedback Message
 
@@ -396,3 +396,96 @@ The system correctly displayed the total number of registrations and the number 
 **Date:** September 2, 2026 
 
 * **Evidence Filename:** `TC-12-record-count-feedback.png`
+
+## Module 9 Manual Test Cases — CR-M9-01
+
+### TC-13 Verify All Status Filter
+
+**Requirement:** CR-M9-01 — Active/Inactive Record Filter
+**Acceptance Criteria:** AC-01, AC-04
+
+**Test Data:** Registration records with Registered, Confirmed, and Cancelled statuses.
+
+**Steps:**
+
+1. Open the Registration Management page.
+2. Locate the status filter.
+3. Select **All**.
+
+**Expected Result:**
+The system displays all registration records regardless of status.
+
+**Actual Result:** Not Run
+
+**Status:** Not Run
+
+---
+
+### TC-14 Verify Active Status Filter
+
+**Requirement:** CR-M9-01 — Active/Inactive Record Filter
+**Acceptance Criteria:** AC-01, AC-02
+
+**Test Data:** Registration records with Registered, Confirmed, and Cancelled statuses.
+
+**Steps:**
+
+1. Open the Registration Management page.
+2. Locate the status filter.
+3. Select **Active**.
+
+**Expected Result:**
+The system displays only records with **Registered** or **Confirmed** status.
+
+**Actual Result:** Not Run
+
+**Status:** Not Run
+
+---
+
+### TC-15 Verify Inactive Status Filter
+
+**Requirement:** CR-M9-01 — Active/Inactive Record Filter
+**Acceptance Criteria:** AC-01, AC-03
+
+**Test Data:** Registration records with Registered, Confirmed, and Cancelled statuses.
+
+**Steps:**
+
+1. Open the Registration Management page.
+2. Locate the status filter.
+3. Select **Inactive**.
+
+**Expected Result:**
+The system displays only records with **Cancelled** status.
+
+**Actual Result:** Not Run
+
+**Status:** Not Run
+
+---
+
+### TC-16 Verify Filter with No Matching Records
+
+**Requirement:** CR-M9-01 — Active/Inactive Record Filter
+**Test Type:** Negative / Edge Case
+
+**Test Data:** A record set containing only Active records.
+
+**Steps:**
+
+1. Open the Registration Management page.
+2. Select **Inactive** from the status filter.
+
+**Expected Result:**
+No registration records are displayed because there are no Inactive records.
+
+**Actual Result:** Not Run
+
+**Status:** Not Run
+
+---
+
+### Compatibility Note
+
+CR-M9-01 does not change the existing localStorage record structure. Existing registration records remain compatible with the updated system, so no data migration is required.
